@@ -1,11 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { PaymentBillingAddressDto } from './payment-billing-address.dto';
-import { CreatePayment } from '../types/create-payment';
 import { PaymentProductDto } from './payment-product.dto';
 import { PaymentShippingAddressDto } from './payment-shipping-address.dto';
 import {
-    IsBoolean,
-    IsCurrency,
+    IsBoolean, IsDateString,
+    IsEmail,
     IsObject,
     IsOptional,
     IsPositive,
@@ -14,6 +13,7 @@ import {
     ValidateNested
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { CreatePayment } from '@unipaas/types';
 
 export class CreatePaymentDto implements CreatePayment {
     @IsPositive()
@@ -26,7 +26,7 @@ export class CreatePaymentDto implements CreatePayment {
     country: string;
 
     @IsString()
-    @ApiProperty({ required: true, default: 'USD' })
+    @ApiProperty({ required: true, default: 'GBP' })
     currency: string;
 
     @ValidateNested()
@@ -34,16 +34,24 @@ export class CreatePaymentDto implements CreatePayment {
     @ApiProperty({ type: PaymentBillingAddressDto })
     billingAddress: PaymentBillingAddressDto;
 
+    @IsOptional()
+    @IsString()
     @ApiProperty()
     description: string;
 
-    @ApiProperty()
+    @IsOptional()
+    @IsDateString()
+    @ApiProperty({required:false, default:'2023-05-01'})
     dueDate: string;
 
-    @ApiProperty()
+    @IsOptional()
+    @IsEmail()
+    @ApiProperty({required:false, default:'eyalgoldd@gmail.com'})
     email: string;
 
-    @ApiProperty()
+    @IsOptional()
+    @IsString()
+    @ApiProperty({required:false, default:'https://google.com'})
     invoiceUrl: string;
 
     @ValidateNested({ each: true })

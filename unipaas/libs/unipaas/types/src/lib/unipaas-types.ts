@@ -21,9 +21,9 @@ export interface CreatePayment {
 export interface PaymentProduct {
     name: string;
     amount: number;
-    vendorId: string;
-    platformFee: number;
-    quantity: number;
+    vendorId?: string;
+    platformFee?: number;
+    quantity?: number;
 }
 
 export interface PaymentBillingAddress {

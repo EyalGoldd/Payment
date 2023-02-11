@@ -1,6 +1,6 @@
-import { PaymentProduct } from '../types/create-payment';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsPositive, IsString } from 'class-validator';
+import { PaymentProduct } from '@unipaas/types';
 
 export class PaymentProductDto implements PaymentProduct {
     @IsPositive()
@@ -19,8 +19,4 @@ export class PaymentProductDto implements PaymentProduct {
     @IsPositive()
     @ApiProperty({default: 5})
     quantity: number;
-
-    @IsString()
-    @ApiProperty()
-    vendorId: string;
 }

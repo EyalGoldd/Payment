@@ -1,14 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { PaymentBillingAddress } from '../types/create-payment';
 import { IsString } from 'class-validator';
+import { PaymentBillingAddress } from '@unipaas/types';
 
 export class PaymentBillingAddressDto implements PaymentBillingAddress {
     @IsString()
     @ApiProperty()
     city: string;
-    
+
     @IsString()
-    @ApiProperty()
+    @ApiProperty({default:'GB'})
     country: string;
 
     @IsString()

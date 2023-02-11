@@ -1,9 +1,18 @@
 import { Module } from '@nestjs/common';
-import {PaymentModule} from "./payment/payment.module";
+import { ConfigModule } from '@nestjs/config';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
-  imports: [PaymentModule],
-  controllers: [],
-  providers: [],
+    imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            envFilePath: '.env'
+        }),
+        PaymentModule
+    ],
+    controllers: [],
+    providers: []
 })
-export class AppModule {}
+export class AppModule {
+}
+

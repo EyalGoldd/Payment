@@ -14,7 +14,12 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "@unipaas/api": ["libs/unipaas/api/src/index.ts"],
+            "@unipaas/email-sender": ["libs/unipaas/email-sender/src/index.ts"],
+            "@unipaas/rmq": ["libs/unipaas/rmq/src/index.ts"],
+            "@unipaas/types": ["libs/unipaas/types/src/index.ts"]
+        }
     },
     "exclude": ["node_modules", "tmp"]
 }
